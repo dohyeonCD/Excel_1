@@ -1,0 +1,17 @@
+
+※  Excel 2010, 2013 버전은 Power Query 추가 설치 필요
+1. 엑셀 리본 메뉴 > 파일 > 도움말(or 계정) : 나의 엑셀 비트 수 확인
+2. 아래 링크 클릭해서 설치
+     https://www.microsoft.com/ko-kr/download/details.aspx?id=39379
+    - 설치 시 : 나의 엑셀 비트 수에 맞는 항목 선택해서 설치해야 함
+3. 설치 완료 후,
+     엑셀 리본 메뉴 > 파일 > 옵션 > 추가기능...중간 하단, 콤보박스 > COM 추가기능 선택 > '이동' 버튼 클릭 
+     > 'Microsoft Power Query for Excel' 항목에 체크 > 확인 > 완료됨
+
+
+※  Excel 2016 Standard , 2016 Professional 버전은
+파워쿼리가 기본만 설치되어 있으므로 
+이 과정의 파워쿼리 고급 스킬 학습을 진행할 수 없습니다.
+버전 업그레이드가 필요합니다.
+
+※ 나머지 버전은 OK!
