@@ -1,0 +1,39 @@
+Sub GatheringData_1()
+    Dim sh As Worksheet
+    Dim rngS As Range, rngT As Range, cf As Range
+    Dim cnt As Long, i As Long, lR As Long
+    
+    Application.ScreenUpdating = False
+    
+    '취합 시트의 기존 데이터 삭제
+    If Sheet1.Range("a1").CurrentRegion.Rows.Count > 1 Then
+        Set rngS = Sheet1.Range("a1").CurrentRegion
+        Set rngS = rngS.Offset(1).Resize(rngS.Rows.Count - 1)
+        rngS.Clear
+    End If
+    
+    '취합시트의 필드명과 나머지 시트들의 필드명 비교해서 같은 필드 찾아 데이터 뿌리기
+    Set rngT = Sheet1.Range("a1", Sheet1.Range("a1").End(2))
+    For Each sh In ThisWorkbook.Worksheets
+        If sh.Name <> ActiveSheet.Name Then
+            cnt = sh.Range("a1").CurrentRegion.Rows.Count
+            lR = Sheet1.Cells(Rows.Count, "a").End(3)(2).Row
+            
+            For i = 1 To sh.Columns.Count
+                Set cf = rngT.Find(sh.Cells(1, i))
+                If Not cf Is Nothing Then
+                    Sheet1.Cells(lR, cf.Column).Resize(cnt - 1, 1) = sh.Range(sh.Cells(2, i), sh.Cells(cnt, i)).Value
+                End If
+            Next
+            
+            Sheet1.Range(Sheet1.Cells(lR, "a"), Sheet1.Cells(lR + cnt - 2, "a")) = sh.Name  '취합 시트, A열에 각 시트 이름 출력
+        End If
+    Next
+    
+    Application.ScreenUpdating = True
+    
+    Set sh = Nothing
+    Set rngT = Nothing
+    Set rngS = Nothing
+    Set cf = Nothing
+End Sub
